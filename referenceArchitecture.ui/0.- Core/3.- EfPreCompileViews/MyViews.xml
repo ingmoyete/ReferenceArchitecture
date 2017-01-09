@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<views>
+  <mapping-views hash="2905a809fbd6331b5f806ab6c90ef71833fbf4049369fb9ca5662fa4573255a7" conceptual-container="ExampleDB" store-container="ExampleDBModelStoreContainer">
+    <view extent="ExampleDBModelStoreContainer.Example"><![CDATA[
+    SELECT VALUE -- Constructing Example
+        [ExampleDBModel.Store.Example](T1.Example_ID, T1.Example_FIELD1, T1.Example_FIELD2, T1.Example_FIELD3)
+    FROM (
+        SELECT 
+            T.ID AS Example_ID, 
+            T.FIELD1 AS Example_FIELD1, 
+            T.FIELD2 AS Example_FIELD2, 
+            T.FIELD3 AS Example_FIELD3, 
+            True AS _from0
+        FROM ExampleDB.Examples AS T
+    ) AS T1]]></view>
+    <view extent="ExampleDB.Examples"><![CDATA[
+    SELECT VALUE -- Constructing Examples
+        [ExampleDBModel.Example](T1.Example_ID, T1.Example_FIELD1, T1.Example_FIELD2, T1.Example_FIELD3)
+    FROM (
+        SELECT 
+            T.ID AS Example_ID, 
+            T.FIELD1 AS Example_FIELD1, 
+            T.FIELD2 AS Example_FIELD2, 
+            T.FIELD3 AS Example_FIELD3, 
+            True AS _from0
+        FROM ExampleDBModelStoreContainer.Example AS T
+    ) AS T1]]></view>
+  </mapping-views>
+</views>
